@@ -296,6 +296,7 @@
     layoutAttributes.bottomLabelHeight = layoutModel.bottomLabelHeight;
     layoutAttributes.spaceBetweenTopLabelAndTextView = layoutModel.spaceBetweenTopLabelAndTextView;
     layoutAttributes.spaceBetweenTextViewAndBottomLabel = layoutModel.spaceBetweenTextViewAndBottomLabel;
+    layoutAttributes.spaceBetweenContainerViewAndAvatarView = layoutModel.spaceBetweenContainerViewAndAvatarView;
 }
 
 @end

@@ -127,7 +127,7 @@
                 <outlet property="bottomLabel" destination="35y-FC-UxN" id="wAh-Ld-TGX"/>
                 <outlet property="bottomLabelHeightConstraint" destination="mVx-dl-W2y" id="nLD-ma-XSJ"/>
                 <outlet property="containerView" destination="mlp-Ig-WT7" id="k8m-rd-Dhd"/>
-                <outlet property="containerViewLeadingToAvatarViewConstraint" destination="CRC-3V-ysb" id="wQA-nq-uPo"/>
+                <outlet property="containerViewLeadingToAvatarViewConstraint" destination="CRC-3V-ysb" id="dtM-Vf-kMY"/>
                 <outlet property="containerWidthConstraint" destination="jtP-rm-saS" id="9Rs-pi-upC"/>
                 <outlet property="messageContainer" destination="aUM-zm-5ky" id="rie-RC-nhS"/>
                 <outlet property="messageContainerBottomInsetConstraint" destination="5Sz-rW-mKf" id="DmH-WT-ifj"/>

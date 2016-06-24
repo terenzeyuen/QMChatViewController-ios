@@ -39,10 +39,9 @@ static NSMutableSet *_qmChatCellMenuActions = nil;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomLabelVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLabelTextViewVerticalSpaceConstraint;
+@property (unsafe_unretained, nonatomic) IBOutlet NSLayoutConstraint *containerViewLeadingToAvatarViewConstraint;
 
 @property (weak, nonatomic, readwrite) UITapGestureRecognizer *tapGestureRecognizer;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewLeadingToAvatarViewConstraint;
 
 @end
 
@@ -140,11 +139,11 @@ static NSMutableSet *_qmChatCellMenuActions = nil;
     
     [self updateConstraint:self.topLabelTextViewVerticalSpaceConstraint withConstant:customAttributes.spaceBetweenTopLabelAndTextView];
     [self updateConstraint:self.textViewBottomLabelVerticalSpaceConstraint withConstant:customAttributes.spaceBetweenTextViewAndBottomLabel];
-	
-    [self updateConstraint:self.containerWidthConstraint withConstant:customAttributes.containerSize.width];
-	
+    
     [self updateConstraint:self.containerViewLeadingToAvatarViewConstraint withConstant:customAttributes.spaceBetweenContainerViewAndAvatarView];
     
+    [self updateConstraint:self.containerWidthConstraint withConstant:customAttributes.containerSize.width];
+	
     [self layoutIfNeeded];
 }
 
@@ -295,8 +294,7 @@ static NSMutableSet *_qmChatCellMenuActions = nil;
         .containerSize = CGSizeZero,
         .topLabelHeight = 17,
         .bottomLabelHeight = 14,
-        .maxWidthMarginSpace = 20,
-      //  .spaceBetweenContainerViewAndAvatarView = 2.0
+        .maxWidthMarginSpace = 20
     };
     
     return defaultLayoutModel;
