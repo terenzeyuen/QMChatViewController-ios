@@ -23,6 +23,7 @@ struct QMChatLayoutModel {
     CGFloat spaceBetweenTopLabelAndTextView;
     CGFloat spaceBetweenTextViewAndBottomLabel;
     CGFloat maxWidthMarginSpace;
+    CGFloat spaceBetweenContainerViewAndAvatarView;
 };
 
 typedef struct QMChatLayoutModel QMChatCellLayoutModel;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -111,7 +111,7 @@
             <constraints>
                 <constraint firstItem="7u5-rz-uqE" firstAttribute="trailing" secondItem="MUd-TY-LP8" secondAttribute="trailing" identifier="outgCellAvaTrailingToCellTrailing" id="Dl5-2o-5N4"/>
                 <constraint firstAttribute="bottom" secondItem="IHn-aU-joG" secondAttribute="bottom" identifier="outgCellContainerBottom" id="HI8-MG-YKY"/>
-                <constraint firstItem="7u5-rz-uqE" firstAttribute="leading" secondItem="IHn-aU-joG" secondAttribute="trailing" priority="750" constant="2" identifier="outgCellAvaContainerLeadingToContainerTrailing" id="hRe-dp-gde"/>
+                <constraint firstItem="7u5-rz-uqE" firstAttribute="leading" secondItem="IHn-aU-joG" secondAttribute="trailing" priority="100" constant="2" identifier="outgCellAvaContainerLeadingToContainerTrailing" id="hRe-dp-gde"/>
                 <constraint firstItem="IHn-aU-joG" firstAttribute="top" secondItem="MUd-TY-LP8" secondAttribute="top" identifier="outgCellContainerTop" id="kQX-PE-key"/>
                 <constraint firstAttribute="bottom" secondItem="7u5-rz-uqE" secondAttribute="bottom" identifier="outgCellContainerBottomToAvaBottom" id="wcc-4f-AaS"/>
             </constraints>
@@ -123,6 +123,7 @@
                 <outlet property="bottomLabel" destination="KM3-Oj-tba" id="nlu-fs-GAw"/>
                 <outlet property="bottomLabelHeightConstraint" destination="WU0-tf-mgf" id="cf4-8U-nj0"/>
                 <outlet property="containerView" destination="IHn-aU-joG" id="FxQ-jl-eL2"/>
+                <outlet property="containerViewLeadingToAvatarViewConstraint" destination="hRe-dp-gde" id="vL9-jB-EZj"/>
                 <outlet property="containerWidthConstraint" destination="D1r-Pq-zcf" id="Nht-Pz-NMl"/>
                 <outlet property="messageContainer" destination="UGA-Lo-mbI" id="qbe-Vg-Mo6"/>
                 <outlet property="messageContainerBottomInsetConstraint" destination="XFF-Rw-dM5" id="zfh-MN-Gen"/>

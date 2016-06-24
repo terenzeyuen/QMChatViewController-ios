@@ -234,7 +234,7 @@
     if (CGSizeEqualToSize(layoutModel.staticContainerSize, CGSizeZero)) {
         
         //  from the cell xibs, there is a 2 point space between avatar and bubble
-        CGFloat spacingBetweenAvatarAndBubble = 2.0f;
+        CGFloat spacingBetweenAvatarAndBubble = layoutModel.spaceBetweenContainerViewAndAvatarView;
         
         CGFloat horizontalContainerInsets = layoutModel.containerInsets.left + layoutModel.containerInsets.right;
         

@@ -17,5 +17,5 @@
 @property (assign, nonatomic) CGFloat bottomLabelHeight;
 @property (assign, nonatomic) CGFloat spaceBetweenTopLabelAndTextView;
 @property (assign, nonatomic) CGFloat spaceBetweenTextViewAndBottomLabel;
-
+@property (assign, nonatomic) CGFloat spaceBetweenContainerViewAndAvatarView;
 @end

@@ -42,6 +42,8 @@ static NSMutableSet *_qmChatCellMenuActions = nil;
 
 @property (weak, nonatomic, readwrite) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewLeadingToAvatarViewConstraint;
+
 @end
 
 @implementation QMChatCell
@@ -141,6 +143,8 @@ static NSMutableSet *_qmChatCellMenuActions = nil;
 	
     [self updateConstraint:self.containerWidthConstraint withConstant:customAttributes.containerSize.width];
 	
+    [self updateConstraint:self.containerViewLeadingToAvatarViewConstraint withConstant:customAttributes.spaceBetweenContainerViewAndAvatarView];
+    
     [self layoutIfNeeded];
 }
 
@@ -291,7 +295,8 @@ static NSMutableSet *_qmChatCellMenuActions = nil;
         .containerSize = CGSizeZero,
         .topLabelHeight = 17,
         .bottomLabelHeight = 14,
-        .maxWidthMarginSpace = 20
+        .maxWidthMarginSpace = 20,
+      //  .spaceBetweenContainerViewAndAvatarView = 2.0
     };
     
     return defaultLayoutModel;
