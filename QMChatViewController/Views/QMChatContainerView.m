@@ -16,6 +16,16 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
+- (void)setBgColor:(UIColor *)bgColor {
+    
+    if (_bgColor != bgColor) {
+        
+        _bgColor = bgColor;
+        [self setNeedsDisplay];
+    }
+    
+}
+
 - (void)drawRect:(CGRect)rect {
     
     [self drawCanvas1WithRect:rect];
