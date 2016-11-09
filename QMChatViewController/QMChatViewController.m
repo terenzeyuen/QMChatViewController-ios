@@ -313,15 +313,34 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
             return;
         }
         
+        CGFloat screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
         NSInteger newToolbarBottomLayoutGuideConstant = kQMSystemInputToolbarDebugHeight;
         
         if ((NSInteger)CGRectGetHeight(superViewFrame) > kQMSystemInputToolbarDebugHeight) {
-            newToolbarBottomLayoutGuideConstant = CGRectGetHeight([UIScreen mainScreen].bounds) - CGRectGetMinY(superViewFrame);
+            newToolbarBottomLayoutGuideConstant = screenHeight - CGRectGetMinY(superViewFrame);
         }
+
         
+//        NSLog(@"_______________________________________");
+//        NSLog(@"superViewFrame = %@",NSStringFromCGRect(superViewFrame));
+//        NSLog(@"ScreenHeigh    = %f",screenHeight);
+//        NSLog(@"ViewHeight     = %f",CGRectGetHeight(self.view.bounds));
+//        NSLog(@"MaxY           = %f", CGRectGetMaxY(superViewFrame));
+//        NSLog(@"Transitioning  = %d", self.isTransitioning);
+
+        
+        if (CGRectGetMaxY(superViewFrame) > screenHeight && !self.isMovingKeyboard && self.inputToolbar.contentView.textView.isFirstResponder) {
+//            NSLog(@"MovingKeyboard = %d", self.isMovingKeyboard);
+//            NSLog(@"FirstResponder = %d",self.inputToolbar.contentView.textView.isFirstResponder);
+//            NSLog(@"return");
+            return;
+        }
+    
+//        if (self.isTransitioning) {
+//            newToolbarBottomLayoutGuideConstant = CGRectGetHeight(superViewFrame);
+//        }
         [strongSelf setToolbarBottomConstraintValue:newToolbarBottomLayoutGuideConstant
                                            animated:YES];
-        
     }];
 }
 
@@ -362,15 +381,6 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
 }
 
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    
-    if (!self.presentedViewController && self.navigationController && !self.view.inputAccessoryView.superview) {
-        [self.view becomeFirstResponder];
-    }
-}
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
@@ -429,7 +439,7 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
 #pragma mark - Messages view controller
 
 - (void)didPressSendButton:(UIButton *)button {
-    
+    NSLog(@"didPress");
     NSArray *attachments = [self currentlyComposedMessageTextAttachments];
     
     if (attachments.count) {
@@ -458,7 +468,7 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
                   senderId:(NSUInteger)senderId
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date {
-    
+  
     NSAssert(NO, @"Error! required method not implemented in subclass. Need to implement %s", __PRETTY_FUNCTION__);
 }
 
@@ -940,10 +950,14 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
 
 - (void)setToolbarBottomConstraintValue:(CGFloat)constraintValue animated:(BOOL)animated {
     
-    if ((NSUInteger)constraintValue == (NSUInteger)self.toolbarBottomLayoutGuide.constant
-        && constraintValue < 0) {
+    if ((NSInteger)constraintValue == (NSInteger)self.toolbarBottomLayoutGuide.constant
+        || constraintValue < 0) {
         return;
     }
+
+//    NSLog(@"constraintValue = %d",(NSInteger)constraintValue);
+//    
+//    NSLog(@"_______________________________________");
     
     self.toolbarBottomLayoutGuide.constant = constraintValue;
     
@@ -1059,7 +1073,7 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
         
         [defaultCenter addObserver:self
                           selector:@selector(didChangeFrame:)
-                              name:UIKeyboardWillChangeFrameNotification
+                              name:UIKeyboardDidChangeFrameNotification
                             object:nil];
         
     }
@@ -1077,7 +1091,7 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
                                object:nil];
         
         [defaultCenter removeObserver:self
-                                 name:UIKeyboardWillChangeFrameNotification
+                                 name:UIKeyboardDidChangeFrameNotification
                                object:nil];
         
         [defaultCenter removeObserver:self
@@ -1179,17 +1193,16 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     
-    self.transitioning = YES;
+     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        
+        self.transitioning = YES;
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        [self.view layoutIfNeeded];
-        [self resetLayoutAndCaches];
+
         self.transitioning = NO;
     }];
     
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+   
     
 }
 
@@ -1251,6 +1264,17 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
 
 - (void)didChangeFrame:(NSNotification *)notification {
     
+    NSDictionary *notificationInfo = [notification userInfo];
+    
+    // Get the end frame of the keyboard in screen coordinates.
+    CGRect finalKeyboardFrame = [[notificationInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // Convert the finalKeyboardFrame to view coordinates to take into account any rotation
+    // factors applied to the window’s contents as a result of interface orientation changes.
+   // finalKeyboardFrame = [self.view convertRect:finalKeyboardFrame fromView:self.view.window];
+    
+
+    //[self setToolbarBottomConstraintValue:CGRectGetHeight(finalKeyboardFrame) animated:YES];
     if ([self shouldScrollToBottom]) {
         [self scrollToBottomAnimated:NO];
     }
