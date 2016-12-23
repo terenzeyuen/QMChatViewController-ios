@@ -213,11 +213,16 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
             }
         };
         
-        [UIView setAnimationsEnabled:NO];
-        [self.collectionView performBatchUpdates:batchUpdatesBlock
-                                      completion:^(BOOL finished) {
-                                          [UIView setAnimationsEnabled:YES];
-                                      }];
+        if (updateType == QMDataSourceActionTypeAdd) {
+            [self.collectionView performBatchUpdates:batchUpdatesBlock
+                                          completion:^(BOOL finished) { }];
+        } else {
+            [UIView setAnimationsEnabled:NO];
+            [self.collectionView performBatchUpdates:batchUpdatesBlock
+                                          completion:^(BOOL finished) {
+                                              [UIView setAnimationsEnabled:YES];
+                                          }];
+        }
         
     }
     else {
