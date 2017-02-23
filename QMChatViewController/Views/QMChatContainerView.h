@@ -8,18 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-IB_DESIGNABLE
 /**
  *  Customisable chat container view.
  */
 @interface QMChatContainerView : UIView
 
-@property (strong, nonatomic) IBInspectable UIColor *bgColor;
-@property (strong, nonatomic) IBInspectable UIColor *highlightColor;
-@property (assign, nonatomic) IBInspectable CGFloat cornerRadius;
-@property (assign, nonatomic) IBInspectable BOOL arrow;
-@property (assign, nonatomic) IBInspectable BOOL leftArrow;
-@property (assign, nonatomic) IBInspectable CGSize arrowSize;
+@property (strong, nonatomic) UIColor *bgColor;
+@property (strong, nonatomic) UIColor *highlightColor;
+@property (assign, nonatomic) CGFloat cornerRadius;
+@property (assign, nonatomic) BOOL arrow;
+@property (assign, nonatomic) BOOL leftArrow;
+@property (assign, nonatomic) CGSize arrowSize;
 
 @property (assign, nonatomic) BOOL highlighted;
 

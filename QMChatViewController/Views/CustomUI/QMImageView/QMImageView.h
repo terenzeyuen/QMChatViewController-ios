@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SDWebImage/SDWebImageManager.h>
-IB_DESIGNABLE
+
 @protocol QMImageViewDelegate ;
 
 typedef NS_ENUM(NSUInteger, QMImageViewType) {
@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, QMImageViewType) {
 /**
  Default QMUserImageViewType QMUserImageViewTypeNone
  */
-@property (nonatomic) IBInspectable CGFloat borderWidth;
+@property (nonatomic) CGFloat borderWidth;
 @property (assign, nonatomic) QMImageViewType imageViewType;
 @property (strong, nonatomic, readonly) NSURL *url;
 

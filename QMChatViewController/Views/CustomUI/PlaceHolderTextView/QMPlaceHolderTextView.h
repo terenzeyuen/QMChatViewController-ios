@@ -46,12 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The text to be displayed when the text view is empty. The default value is `nil`.
  */
-@property (copy, nonatomic, nullable) IBInspectable NSString *placeHolder;
+@property (copy, nonatomic, nullable) NSString *placeHolder;
 
 /**
  *  The color of the place holder text. The default value is `[UIColor lightGrayColor]`.
  */
-@property (strong, nonatomic) IBInspectable UIColor *placeHolderColor;
+@property (strong, nonatomic) UIColor *placeHolderColor;
 
 /**
  *  Determines whether or not the text view contains text after trimming white space
