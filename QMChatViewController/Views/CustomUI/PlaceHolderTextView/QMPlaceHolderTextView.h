@@ -15,12 +15,12 @@ extern NSString * const QMPlaceholderDidChangeHeight;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol QMPlaceHolderTextViewtextPasteDelegate;
+@protocol QMPlaceHolderTextViewTextPasteDelegate;
 
 /**
  *  A delegate object used to notify the receiver of paste events from a `QMPlaceHolderTextView`.
  */
-@protocol QMPlaceHolderTextViewtextPasteDelegate <NSObject>
+@protocol QMPlaceHolderTextViewTextPasteDelegate <NSObject>
 
 /**
  *  Asks the delegate whether or not the `textView` should use the original implementation of `-[UITextView paste]`.
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The object that acts as the paste delegate of the text view.
  */
-@property (weak, nonatomic, nullable) id<QMPlaceHolderTextViewtextPasteDelegate> textPasteDelegate;
+@property (weak, nonatomic, nullable) id<QMPlaceHolderTextViewTextPasteDelegate> textPasteDelegate;
 
 /**
  *  The text to be displayed when the text view is empty. The default value is `nil`.
