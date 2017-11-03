@@ -244,7 +244,7 @@ NSString *const QMPlaceholderDidChangeHeight = @"com.quickblox.qmunicate.QMPlace
 
 - (void)paste:(id)sender
 {
-    if (!self.pasteDelegate || [self.pasteDelegate placeHolderTextView:self shouldPasteWithSender:sender]) {
+    if (!self.textPasteDelegate || [self.textPasteDelegate placeHolderTextView:self shouldPasteWithSender:sender]) {
         [super paste:sender];
     }
 }
