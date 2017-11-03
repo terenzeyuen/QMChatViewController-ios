@@ -28,7 +28,7 @@ const NSUInteger kQMSystemInputToolbarDebugHeight = 0;
 
 @interface QMChatViewController () <QMInputToolbarDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIActionSheetDelegate, UIScrollViewDelegate,
-UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate, UIGestureRecognizerDelegate>
+UIAlertViewDelegate,QMPlaceHolderTextViewTextPasteDelegate, QMChatDataSourceDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet QMChatCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet QMInputToolbar *inputToolbar;
@@ -73,7 +73,7 @@ UIAlertViewDelegate,QMPlaceHolderTextViewPasteDelegate, QMChatDataSourceDelegate
     self.collectionView.delegate = nil;
     
     self.inputToolbar.contentView.textView.delegate = nil;
-    self.inputToolbar.contentView.textView.pasteDelegate = nil;
+    self.inputToolbar.contentView.textView.textPasteDelegate = nil;
     self.inputToolbar.delegate = nil;
     
     self.senderDisplayName = nil;
