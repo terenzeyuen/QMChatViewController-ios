@@ -9,18 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <Quickblox/Quickblox.h>
 
-extern NSString * const QMPlaceholderDidChangeHeight;
 
 @class QMPlaceHolderTextView;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol QMPlaceHolderTextViewTextPasteDelegate;
+extern NSString * const QMPlaceholderDidChangeHeight;
+
+@protocol QMPlaceHolderTextViewPasteDelegate;
 
 /**
  *  A delegate object used to notify the receiver of paste events from a `QMPlaceHolderTextView`.
  */
-@protocol QMPlaceHolderTextViewTextPasteDelegate <NSObject>
+@protocol QMPlaceHolderTextViewPasteDelegate <NSObject>
 
 /**
  *  Asks the delegate whether or not the `textView` should use the original implementation of `-[UITextView paste]`.
@@ -41,17 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The object that acts as the paste delegate of the text view.
  */
-@property (weak, nonatomic, nullable) id<QMPlaceHolderTextViewTextPasteDelegate> textPasteDelegate;
+@property (weak, nonatomic, nullable) id<QMPlaceHolderTextViewPasteDelegate> pasteDelegate;
 
 /**
  *  The text to be displayed when the text view is empty. The default value is `nil`.
  */
-@property (copy, nonatomic, nullable) NSString *placeHolder;
+@property (copy, nonatomic, nullable) IBInspectable NSString *placeHolder;
 
 /**
  *  The color of the place holder text. The default value is `[UIColor lightGrayColor]`.
  */
-@property (strong, nonatomic) UIColor *placeHolderColor;
+@property (strong, nonatomic) IBInspectable UIColor *placeHolderColor;
 
 /**
  *  Determines whether or not the text view contains text after trimming white space
