@@ -28,7 +28,8 @@ const NSUInteger kQMSystemInputToolbarDebugHeight = 0;
 @interface QMChatViewController ()
 <QMInputToolbarDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIActionSheetDelegate, UIScrollViewDelegate,
-UIAlertViewDelegate, QMChatDataSourceDelegate>
+UIAlertViewDelegate, QMPlaceHolderTextViewtextPasteDelegate, QMChatDataSourceDelegate>
+
 
 @property (weak, nonatomic) IBOutlet QMChatCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet QMInputToolbar *inputToolbar;
@@ -67,7 +68,7 @@ UIAlertViewDelegate, QMChatDataSourceDelegate>
     [self registerForNotifications:NO];
     
     self.inputToolbar.contentView.textView.delegate = nil;
-    self.inputToolbar.contentView.textView.pasteDelegate = nil;
+    self.inputToolbar.contentView.textView.textPasteDelegate = nil;
     self.inputToolbar.delegate = nil;
     
     self.senderDisplayName = nil;
@@ -250,8 +251,17 @@ UIAlertViewDelegate, QMChatDataSourceDelegate>
             break;
         }
     };
-    
-    [self.collectionView performBatchUpdates:batchUpdatesBlock completion:nil];
+    if (updateType == QMDataSourceActionTypeAdd) {
+        [self.collectionView performBatchUpdates:batchUpdatesBlock
+                                      completion:^(BOOL finished) { }];
+    } else {
+        [UIView setAnimationsEnabled:NO];
+        [self.collectionView performBatchUpdates:batchUpdatesBlock
+                                      completion:^(BOOL finished) {
+                                          [UIView setAnimationsEnabled:YES];
+                                      }];
+    }
+
 }
 
 - (void)chatDataSource:(QMChatDataSource *)chatDataSource willBeChangedWithMessageIDs:(NSArray *)messagesIDs {
