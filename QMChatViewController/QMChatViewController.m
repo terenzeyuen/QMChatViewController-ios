@@ -30,7 +30,6 @@ const NSUInteger kQMSystemInputToolbarDebugHeight = 0;
 UINavigationControllerDelegate, UIActionSheetDelegate, UIScrollViewDelegate,
 UIAlertViewDelegate, QMPlaceHolderTextViewtextPasteDelegate, QMChatDataSourceDelegate>
 
-
 @property (weak, nonatomic) IBOutlet QMChatCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet QMInputToolbar *inputToolbar;
 
@@ -261,7 +260,6 @@ UIAlertViewDelegate, QMPlaceHolderTextViewtextPasteDelegate, QMChatDataSourceDel
                                           [UIView setAnimationsEnabled:YES];
                                       }];
     }
-
 }
 
 - (void)chatDataSource:(QMChatDataSource *)chatDataSource willBeChangedWithMessageIDs:(NSArray *)messagesIDs {
@@ -274,11 +272,9 @@ UIAlertViewDelegate, QMPlaceHolderTextViewtextPasteDelegate, QMChatDataSourceDel
 #pragma mark - View lifecycle
 
 - (NSUInteger)inputToolBarStartPos {
-    
     if (self.tabBarItem) {
         return self.tabBarController.tabBar.frame.size.height;
     }
-    
     return 0;
 }
 
@@ -819,10 +815,8 @@ UIAlertViewDelegate, QMPlaceHolderTextViewtextPasteDelegate, QMChatDataSourceDel
 }
 
 - (void)updateCollectionViewInsets {
-    
     CGFloat topValue = 0;
     CGFloat bottomValue = self.topContentAdditionalInset;
-    
     [self setCollectionViewInsetsTopValue:topValue
                               bottomValue:bottomValue];
 }
