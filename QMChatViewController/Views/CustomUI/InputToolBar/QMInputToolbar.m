@@ -136,7 +136,7 @@ static void * kQMInputToolbarKeyValueObservingContext = &kQMInputToolbarKeyValue
         buttonContainer = self.contentView.leftBarButtonContainerView;
     }
     
-    buttonToUpdate.hidden = !hasDataToSend;
+//    buttonToUpdate.hidden = !hasDataToSend;
     buttonToUpdate.enabled = [self.contentView.textView hasText];
     
     if (!self.audioRecordButtonItem.superview) {
