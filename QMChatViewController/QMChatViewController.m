@@ -272,10 +272,16 @@ UIAlertViewDelegate, QMPlaceHolderTextViewtextPasteDelegate, QMChatDataSourceDel
 #pragma mark - View lifecycle
 
 - (NSUInteger)inputToolBarStartPos {
-    if (self.tabBarItem) {
+    if (self.tabBarItem && !self.hidesBottomBarWhenPushed) {
         return self.tabBarController.tabBar.frame.size.height;
     }
-    return 0;
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        CGFloat bottomPadding = window.safeAreaInsets.bottom;
+        return bottomPadding;
+    } else {
+        return 0.0;
+    }
 }
 
 #pragma mark - Tool bar
